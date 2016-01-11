@@ -1,24 +1,33 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <script src="/js/lib/jquery.min.js"></script>
+        <script src="/js/lib/bootstrap.min.js"></script>
+        <script src="/js/main.js"></script>
+
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="csrf-token">
-        <title></title>
-        <link rel="stylesheet" href="/css/main.css">
+        <title><%= title %></title>
+        <link rel="stylesheet" href="/stylesheets/style.css">
+
     </head>
-<body>
-    <!-- include partials/header -->
-    <div class="container">
-        <!-- include partials/flash -->
-        <!-- block content -->
 
-    </div>
-    <!-- include partials/footer -->
+    <body>
+        <% include partials/header %>
 
-    <script src="/js/lib/jquery.min.js"></script>
-    <script src="/js/lib/bootstrap.min.js"></script>
-    <script src="/js/main.js"></script>
-</body>
+        <div class="container">
+            <!-- include partials/flash -->
+
+            <%- body -%>        <!-- uses ejs-mate layouts -->
+
+        </div>
+        <% include partials/footer %>
+        <!-- include partials/footer -->
+
+        <script src='/js/lib/jquery.min.js'></script>
+        <script src='/js/lib/bootstrap.min.js'></script>
+
+    </body>
 </html>

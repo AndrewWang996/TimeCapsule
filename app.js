@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 var errorHandler = require('errorhandler');
 var dotenv = require('dotenv');
 var mongoose = require('mongoose');
-
+var engine = require('ejs-mate');
 
 /**
  * Load environment variables from .env file, where API keys and passwords are configured.
@@ -19,13 +19,22 @@ dotenv.load({ path: '.env' });
 /**
  * Controllers (route handlers).
  */
-var homeController = require('./routes/home');
+var homeController = require('./controllers/home');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
-
+/**
+ * Create the app
+ */
 var app = express();
+
+/**
+ * Set up view engine
+ */
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+app.engine('ejs', engine);
 
 /**
  * Connect to MongoDB.
@@ -35,10 +44,6 @@ mongoose.connection.on('error', function() {
     console.log('MongoDB Connection Error. Please make sure that MongoDB is running.');
     process.exit(1);
 });
-
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -51,6 +56,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 // app.use('/', routes);
 // app.use('/users', users);
 
+/**
+ * Primary app routes.
+ */
 app.get('/', homeController.index);
 
 /**
