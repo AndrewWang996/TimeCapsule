@@ -23,7 +23,7 @@ exports.create = function(username, password) {
     });
 }
 
-exports.verify(username, password) {
+exports.verify = function(username, password) {
     return userModel.findOne({
         username: username
     }).then(function(user) {

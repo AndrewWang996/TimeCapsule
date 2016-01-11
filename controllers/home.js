@@ -4,6 +4,6 @@
  */
 exports.index = function(req, res) {
     res.render('home', {
-        title: 'Time Capsule'
+        title: "Time Capsule"
     });
 };

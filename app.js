@@ -8,6 +8,7 @@ var errorHandler = require('errorhandler');
 var dotenv = require('dotenv');
 var mongoose = require('mongoose');
 var engine = require('ejs-mate');
+var passport = require('passport');
 
 /**
  * Load environment variables from .env file, where API keys and passwords are configured.
@@ -20,9 +21,15 @@ dotenv.load({ path: '.env' });
  * Controllers (route handlers).
  */
 var homeController = require('./controllers/home');
+var userController = require('./controllers/user');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+
+/**
+ * API keys and Passport configuration.
+ */
+var passportConf = require('./config/passport');
 
 /**
  * Create the app
@@ -51,15 +58,44 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 // app.use('/', routes);
 // app.use('/users', users);
 
+
+console.log(process.env);
+
 /**
  * Primary app routes.
  */
 app.get('/', homeController.index);
+app.get('/login', userController.getLogin);
+
+/**
+ * OAuth authentication routes. (Sign in)
+ */
+
+/*
+app.get('/auth/facebook', passport.authenticate('facebook', { scope: ['email', 'user_location'] }));
+app.get('/auth/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/login' }), function(req, res) {
+    console.log("hello");
+    res.redirect(req.session.returnTo || '/');
+});
+app.get('/auth/instagram', passport.authenticate('instagram'));
+app.get('/auth/instagram/callback', passport.authenticate('instagram', { failureRedirect: '/login' }), function(req, res) {
+    res.redirect(req.session.returnTo || '/');
+});
+
+*/
+app.get('/auth/google', passport.authenticate('google', { scope: 'profile email' }));
+app.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/login' }), function(req, res) {
+    res.redirect(req.session.returnTo || '/');
+});
 
 /**
  * Error Handler.
