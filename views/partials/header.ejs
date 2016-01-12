@@ -28,7 +28,8 @@
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                <% if(true){        /*if(!user){*/ %>
+
+                <% if( !user ) { %>
                     <li class="<% title == 'Home' ? 'active': undefined %>">
                         <a href='/login'>Login</a>
                     </li>
@@ -39,12 +40,12 @@
                     <li class="dropdown <% title == 'Account Management' ? 'active': undefined %>">
                         <a href="#" data-toggle="dropdown" class="dropdown-toggle">
                             <% if( user.profile.picture ) { %>
-                                <img src="<% user.profile.picture %>">
+                                <img src="<%= user.profile.picture %>">
                             <% } else { %>
-                                <img src="<% user.gravatar(60) %>">
+                                <img src="<%= user.gravatar(60) %>">
                             <% } %>
 
-                            <% user.profile.name %>
+                            <%= user.profile.name %>
                         </a>
 
                         <ul class="dropdown-menu">

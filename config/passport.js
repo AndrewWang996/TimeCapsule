@@ -6,7 +6,7 @@ var LocalStrategy = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
-var User = require('../models/User');
+var User = require('../model/User');
 
 passport.serializeUser(function(user, done) {
     done(null, user.id);
@@ -17,75 +17,6 @@ passport.deserializeUser(function(id, done) {
         done(err, user);
     });
 });
-
-/**
- * Sign in with Instagram.
- */
-passport.use(new InstagramStrategy({
-    clientID: process.env.INSTAGRAM_ID,
-    clientSecret: process.env.INSTAGRAM_SECRET,
-    callbackURL: '/auth/instagram/callback',
-    passReqToCallback: true
-},function(req, accessToken, refreshToken, profile, done) {
-    if (req.user) {
-        User.findOne({ instagram: profile.id }, function(err, existingUser) {
-            if (existingUser) {
-                req.flash('errors', { msg: 'There is already an Instagram account that belongs to you. Sign in with that account or delete it, then link it with your current account.' });
-                done(err);
-            } else {
-                User.findById(req.user.id, function(err, user) {
-                    user.instagram = profile.id;
-                    user.tokens.push({ kind: 'instagram', accessToken: accessToken });
-                    user.profile.name = user.profile.name || profile.displayName;
-                    user.profile.picture = user.profile.picture || profile._json.data.profile_picture;
-                    user.profile.website = user.profile.website || profile._json.data.website;
-                    user.save(function(err) {
-                        req.flash('info', { msg: 'Instagram account has been linked.' });
-                        done(err, user);
-                    });
-                });
-            }
-        });
-    } else {
-        User.findOne({ instagram: profile.id }, function(err, existingUser) {
-            if (existingUser) {
-                return done(null, existingUser);
-            }
-            var user = new User();
-            user.instagram = profile.id;
-            user.tokens.push({ kind: 'instagram', accessToken: accessToken });
-            user.profile.name = profile.displayName;
-            // Similar to Twitter API, assigns a temporary e-mail address
-            // to get on with the registration process. It can be changed later
-            // to a valid e-mail address in Profile Management.
-            user.email = profile.username + "@instagram.com";
-            user.profile.website = profile._json.data.website;
-            user.profile.picture = profile._json.data.profile_picture;
-            user.save(function(err) {
-                done(err, user);
-            });
-        });
-    }
-}));
-
-/**
- * Sign in using Email and Password.
- */
-passport.use(new LocalStrategy({ usernameField: 'email' }, function(email, password, done) {
-    email = email.toLowerCase();
-    User.findOne({ email: email }, function(err, user) {
-        if (!user) {
-            return done(null, false, { message: 'Email ' + email + ' not found'});
-        }
-        user.comparePassword(password, function(err, isMatch) {
-            if (isMatch) {
-                return done(null, user);
-            } else {
-                return done(null, false, { message: 'Invalid email or password.' });
-            }
-        });
-    });
-}));
 
 /**
  * OAuth Strategy Overview
@@ -211,6 +142,75 @@ passport.use(new GoogleStrategy({
             });
         });
     }
+}));
+
+/**
+ * Sign in with Instagram.
+ */
+passport.use(new InstagramStrategy({
+    clientID: process.env.INSTAGRAM_ID,
+    clientSecret: process.env.INSTAGRAM_SECRET,
+    callbackURL: '/auth/instagram/callback',
+    passReqToCallback: true
+},function(req, accessToken, refreshToken, profile, done) {
+    if (req.user) {
+        User.findOne({ instagram: profile.id }, function(err, existingUser) {
+            if (existingUser) {
+                req.flash('errors', { msg: 'There is already an Instagram account that belongs to you. Sign in with that account or delete it, then link it with your current account.' });
+                done(err);
+            } else {
+                User.findById(req.user.id, function(err, user) {
+                    user.instagram = profile.id;
+                    user.tokens.push({ kind: 'instagram', accessToken: accessToken });
+                    user.profile.name = user.profile.name || profile.displayName;
+                    user.profile.picture = user.profile.picture || profile._json.data.profile_picture;
+                    user.profile.website = user.profile.website || profile._json.data.website;
+                    user.save(function(err) {
+                        req.flash('info', { msg: 'Instagram account has been linked.' });
+                        done(err, user);
+                    });
+                });
+            }
+        });
+    } else {
+        User.findOne({ instagram: profile.id }, function(err, existingUser) {
+            if (existingUser) {
+                return done(null, existingUser);
+            }
+            var user = new User();
+            user.instagram = profile.id;
+            user.tokens.push({ kind: 'instagram', accessToken: accessToken });
+            user.profile.name = profile.displayName;
+            // Similar to Twitter API, assigns a temporary e-mail address
+            // to get on with the registration process. It can be changed later
+            // to a valid e-mail address in Profile Management.
+            user.email = profile.username + "@instagram.com";
+            user.profile.website = profile._json.data.website;
+            user.profile.picture = profile._json.data.profile_picture;
+            user.save(function(err) {
+                done(err, user);
+            });
+        });
+    }
+}));
+
+/**
+ * Sign in using Email and Password.
+ */
+passport.use(new LocalStrategy({ usernameField: 'email' }, function(email, password, done) {
+    email = email.toLowerCase();
+    User.findOne({ email: email }, function(err, user) {
+        if (!user) {
+            return done(null, false, { message: 'Email ' + email + ' not found'});
+        }
+        user.comparePassword(password, function(err, isMatch) {
+            if (isMatch) {
+                return done(null, user);
+            } else {
+                return done(null, false, { message: 'Invalid email or password.' });
+            }
+        });
+    });
 }));
 
 
