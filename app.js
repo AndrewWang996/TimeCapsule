@@ -11,6 +11,7 @@ var engine = require('ejs-mate');
 var passport = require('passport');
 var session = require('express-session');
 var MongoStore = require('connect-mongo/es5')(session);
+var flash = require('express-flash');
 
 /**
  * Load environment variables from .env file, where API keys and passwords are configured.
@@ -71,18 +72,14 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(flash());
 app.use(function(req, res, next) {
-    console.log(req.user);
     res.locals.user = req.user;
-    console.log(res.locals.user);
-
-    console.log("=================================================");
     next();
 });
 app.use(function(req, res, next) {
     console.log(req.path);
     if (/api/i.test(req.path)) {
-        console.log("===================== API was contained in the path ===================================");
         req.session.returnTo = req.path;
     }
     next();
@@ -92,35 +89,38 @@ app.use(express.static(path.join(__dirname, 'public')));
 // app.use('/', routes);
 // app.use('/users', users);
 
-
-console.log(process.env);
-
 /**
  * Primary app routes.
  */
 app.get('/', homeController.index);
 app.get('/login', userController.getLogin);
+app.get('/logout', userController.logout);
 
 /**
  * OAuth authentication routes. (Sign in)
  */
 app.get('/auth/facebook', passport.authenticate('facebook', { scope: ['email', 'user_location'] }));
-app.get('/auth/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/login' }), function(req, res) {
-    console.log("hello");
+app.get('/auth/facebook/callback',
+        passport.authenticate('facebook', { failureRedirect: '/login' }),
+        function(req, res) {
     res.redirect(req.session.returnTo || '/');
 });
 
+/*
 app.get('/auth/instagram', passport.authenticate('instagram'));
-app.get('/auth/instagram/callback', passport.authenticate('instagram', { failureRedirect: '/login' }), function(req, res) {
+app.get('/auth/instagram/callback',
+        passport.authenticate('instagram', { failureRedirect: '/login' }),
+        function(req, res) {
     res.redirect(req.session.returnTo || '/');
 });
 
 app.get('/auth/google', passport.authenticate('google', { scope: 'profile email' }));
-app.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/login' }), function(req, res) {
-    console.log(req.session);
-    console.log(req.session.returnTo);
+app.get('/auth/google/callback',
+        passport.authenticate('google', { failureRedirect: '/login' }),
+        function(req, res) {
     res.redirect(req.session.returnTo || '/');
 });
+*/
 
 /**
  * Error Handler.

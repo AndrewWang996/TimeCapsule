@@ -10,3 +10,14 @@ exports.getLogin = function(req, res) {
         title: 'Login'
     });
 };
+
+
+/**
+ * GET /logout
+ * Log out.
+ */
+exports.logout = function(req, res) {
+    req.logout();
+    res.redirect('/');
+};
+

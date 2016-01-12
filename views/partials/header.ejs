@@ -45,7 +45,7 @@
                                 <img src="<%= user.gravatar(60) %>">
                             <% } %>
 
-                            <%= user.profile.name %>
+                            <%= user.profile.name || user.email || user._id %>
                         </a>
 
                         <ul class="dropdown-menu">
