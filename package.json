@@ -6,6 +6,8 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "async": "^1.5.2",
+    "bcrypt-nodejs": "0.0.3",
     "bluebird": "^3.1.1",
     "body-parser": "~1.13.2",
     "connect-mongo": "^1.1.0",
@@ -25,6 +27,10 @@
     "morgan": "~1.6.1",
     "node-font-awesome": "^1.0.2",
     "passport": "^0.3.2",
+    "passport-facebook": "^2.0.0",
+    "passport-google-oauth": "^0.2.0",
+    "passport-instagram": "^1.0.0",
+    "passport-local": "^1.0.0",
     "request": "^2.67.0",
     "serve-favicon": "~2.3.0"
   }
