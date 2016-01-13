@@ -1,0 +1,25 @@
+<% layout('layout') -%>
+
+<h1><%= title %></h1>
+<p class="lead">A scrapbook to remember.</p>
+
+<hr/>
+
+<div class="row">
+    <div class="col-sm-6">
+        <h4>Your name</h4>
+        <p><%= me.name || "unknown" %></p>
+    </div>
+    <div class="col-sm-6">
+        <h4>Your email</h4>
+        <p><%= me.email || "unknown" %></p>
+    </div>
+    <div class="col-sm-6">
+        <h4>Your gender</h4>
+        <p><%= me.gender || "unknown" %></p>
+    </div>
+    <div class="col-sm-6">
+        <h4>Your timezone</h4>
+        <p><%= me.timezone || "unknown" %></p>
+    </div>
+</div>

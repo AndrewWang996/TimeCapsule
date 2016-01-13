@@ -10,7 +10,7 @@
                 <span class="icon-bar"></span>
             </button>
             <a href="/" class="navbar-brand">
-                <%= title %>
+                <%= project %>
             </a>
         </div>
 
@@ -19,12 +19,14 @@
                 <li class="<% title == 'Home' ? 'active': undefined %>">
                     <a href="/">Home</a>
                 </li>
-                <li class="<% title == 'Maps' ? 'active': undefined %>">
-                    <a href="/maps">Maps</a>
-                </li>
-                <li class="<% title == 'Scrapbook' ? 'active': undefined %>">
-                    <a href="/scrapbook">Scrapbook</a>
-                </li>
+                <% if( user ) { %>
+                    <li class="<% title == 'Maps' ? 'active': undefined %>">
+                        <a href="/maps">Maps</a>
+                    </li>
+                    <li class="<% title == 'Scrapbook' ? 'active': undefined %>">
+                        <a href="/scrapbook">Scrapbook</a>
+                    </li>
+                <% } %>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">

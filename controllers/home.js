@@ -3,11 +3,11 @@
  * Home page.
  */
 exports.index = function(req, res) {
-    console.log(">>>>>>>>>> res local user for home page >>>>>>>");
-    console.log(res.locals.user);
-    console.log(">>>>>>>>>> res local user for home page >>>>>>>");
-
     res.render('home', {
-        title: "Time Capsule"
+        title: 'Home'
     });
+    /*
+    * Note that our project variable is already being set to
+    * "Time Capsule" in the Middleware of app.js
+    */
 };

@@ -25,9 +25,11 @@ dotenv.load({ path: '.env' });
  */
 var homeController = require('./controllers/home');
 var userController = require('./controllers/user');
+var mapsController = require('./controllers/maps');
+var scrapbookController = require('./controllers/scrapbook');
 
-var routes = require('./routes/index');
-var users = require('./routes/users');
+// var routes = require('./routes/index');
+// var users = require('./routes/users');
 
 /**
  * API keys and Passport configuration.
@@ -55,6 +57,13 @@ mongoose.connection.on('error', function() {
     process.exit(1);
 });
 
+
+
+
+
+/**
+ * Middleware
+ */
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
@@ -73,12 +82,25 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
+/**
+ * Middleware to set the app's global project name to "Time Capsule"
+ */
+app.use(function(req, res, next) {
+    app.locals.project = process.env.PROJECT_NAME;
+    next();
+});
+/**
+ * Middleware to allow access to user in all ejs templates
+ */
 app.use(function(req, res, next) {
     res.locals.user = req.user;
     next();
 });
+/**
+ * If the request path has the letters "api",
+ *  then set the returnTo URL to this path
+ */
 app.use(function(req, res, next) {
-    console.log(req.path);
     if (/api/i.test(req.path)) {
         req.session.returnTo = req.path;
     }
@@ -89,12 +111,25 @@ app.use(express.static(path.join(__dirname, 'public')));
 // app.use('/', routes);
 // app.use('/users', users);
 
+
+
+
+
+
+
+
+
+
 /**
  * Primary app routes.
  */
 app.get('/', homeController.index);
 app.get('/login', userController.getLogin);
 app.get('/logout', userController.logout);
+
+app.get('/maps', mapsController.getIndex);
+app.get('/scrapbook', scrapbookController.getIndex);
+
 
 /**
  * OAuth authentication routes. (Sign in)

@@ -1,11 +1,8 @@
 /**
  * Split into declaration and initialization for better startup performance.
  */
-var validator;
 var graph;
 var ig;
-var Y;
-var request;
 
 var _ = require('lodash');
 var async = require('async');
