@@ -5,6 +5,17 @@
 
 <hr/>
 
+<% for(var i=0;i<photos.length;i++) { %>
+    <img src="<%= photos[i].source %>"/>
+<% } %>
+<%/* for(var i=0;i<photos.length;i++) { %>
+    <% for(var j=0; j<photos[i].data.length;j++) { %>
+        <img src="<%= photos[i].data[j].link %>"/>
+    <% } %>
+    <hr/>
+<% }*/ %>
+
+<% /* %>
 <div class="row">
     <div class="col-sm-6">
         <h4>Your name</h4>
@@ -23,3 +34,4 @@
         <p><%= me.timezone || "unknown" %></p>
     </div>
 </div>
+<% */ %>
