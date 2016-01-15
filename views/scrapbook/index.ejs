@@ -23,7 +23,7 @@
         <% } %>
         </div>
     <% } %>
-    <% if((album.photos.length/2) % 2) { //if odd, add extra blank page %>
+    <% if(Math.ceil(album.photos.length/2) % 2) { //if odd, add extra blank page %>
         <div></div>
     <% } %>
     <div class="hard"></div>
