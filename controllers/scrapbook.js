@@ -9,7 +9,12 @@ exports.getBook = function(req, res) {
 };
 
 exports.getBookWithName = function(req, res) {
-    Scrapbook.getAlbum(req.params.name)
+console.log(decodeURIComponent(req.params.name));
+/* CALL THIS WHEN YOU NEED TO SYNC
+Scrapbook.syncFacebook(req.user.email)
+.then(function() { console.log("DONE!"); });
+*/
+    Scrapbook.getAlbum(decodeURIComponent(req.params.name))
     .then(function(album) {
         res.render("scrapbook/index", {
             title: "Time Capsule Scrapbook",

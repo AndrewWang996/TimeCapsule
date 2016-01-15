@@ -34,6 +34,8 @@ var ats = "116850108484293"; // use "me" later when we have user_photos
 
 // Returns a promise when everything is done
 exports.syncFacebook = function(email) {
+    var albumNames = []
+
     return User.findOne({
         email: email
     }).then(function(user) {
@@ -54,13 +56,14 @@ exports.syncFacebook = function(email) {
 
         var dbPromise = scrapbookModel.findOneAndUpdate({name: "main"}, obj, {upsert: true});
         var fbPromise = Promise.map(albums, function(album) {
+            albumNames.push(album.name);
             return graph.getAsync("/"+album.id+"/photos?fields=id,name,source,created_time,place&limit=999");
         });
 
         return Promise.all([dbPromise, fbPromise]);
     }).then(function(data) {
-        return Promise.map(data[1], function(album) {
-            var obj = {name: album.name, parent: "main"};
+        return Promise.map(data[1], function(album, index) {
+            var obj = {name: albumNames[index], parent: "main"};
             obj.photos = album.data.map(function(photo) {
                 return {
                     photoName: photo.name,
@@ -69,7 +72,7 @@ exports.syncFacebook = function(email) {
                     location: photo.place
                 };
             });
-            return scrapbookModel.findOneAndUpdate({name: album.name}, obj, {upsert: true});
+            return scrapbookModel.findOneAndUpdate({name: albumNames[index]}, obj, {upsert: true});
         });
     });
 };

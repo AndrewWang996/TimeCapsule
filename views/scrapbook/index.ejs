@@ -6,17 +6,25 @@
 <hr/>
 
 <div id="flipbook">
-    <div class="hard"><%= album.name %></div> 
+    <div class="hard"><br><h1><%= album.name %></h1></div> 
     <div class="hard"></div>
     <% for(var i=0;i<album.photos.length;i=i+2) { %>
-        <!-- two photos per page -->
+        <!-- two photos per page, can change if neccessary -->
         <div>
-        <img src="<%= album.photos[i].imageUrl %>" height=200/>
-        <% if(i+1<album.photos.length) { %>
-        <br>
-        <img src="<%= album.photos[i+1].imageUrl %>" height=200/>
+        <% for(var j=i;j<i+2 && j<album.photos.length;j++) { %>
+            <% if(album.photos[j].albumName) { %>
+            <a href="/scrapbook/<%= album.photos[j].albumName %>">
+                <img class="albumLink" src="<%= album.photos[j].imageUrl %>" height=200/>
+            </a>
+            <% } else { %>
+            <img src="<%= album.photos[j].imageUrl %>" height=200/>
+            <% } %>
+            <br>
         <% } %>
         </div>
+    <% } %>
+    <% if((album.photos.length/2) % 2) { //if odd, add extra blank page %>
+        <div></div>
     <% } %>
     <div class="hard"></div>
     <div class="hard"></div>
