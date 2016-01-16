@@ -1,22 +1,25 @@
 .btn-join
 {
-    background: white;
+    background: none;
     padding: 50px 50px 50px 50px;
     margin: 5px 5px 5px 5px;
+    z-index: -7;
 }
 
 .grid{
 	padding:0px 0px 0px 0px;
-    /*background-color: white;*/
-    filter:alpha(opacity=50); /* IE */
-    opacity: 0.5; /* Safari, Opera */
-    -moz-opacity:0.50; /* FireFox */
+}
+
+.darkclass{
+    background-color: gray;
+    opacity: 0.25; /* Safari, Opera */
+    -moz-opacity:0.25; /* FireFox */
     z-index: 20;
-    height: 100%;
-    width: 100%;
+    /*height: 100%;
+    width: 100%;*/
     background-repeat:no-repeat;
     background-position:center;
-    position:absolute;
+    position:relative;
     top: 0px;
     left: 0px;
 }
