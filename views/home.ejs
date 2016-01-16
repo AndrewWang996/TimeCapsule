@@ -1,30 +1,116 @@
+<!DOCTYPE html>
 <% layout('layout') -%>
+<html>
+<head>
+    <link rel="stylesheet" href="/stylesheets/home.css">
+</head>
+<body>
+    <h1><%= project %></h1>
+    <p class="lead">A scrapbook to remember.</p>
+
+    <hr/>
+    <div class="row grid">
+        <div id="myCarousel" class="carousel fade small" data-ride="carousel">
+
+          <!-- Wrapper for slides -->
+          <div class="carousel-inner big" role="listbox">
+            <div class="item active img-thumbnail">
+              <img src="img/4.jpg" alt="Chania">
+            </div>
+
+            <div class="item img-thumbnail big">
+              <img src="img/1.jpg" alt="Chania">
+            </div>
+
+            <div class="item img-thumbnail big">
+              <img src="img/2.jpg" alt="Flower">
+            </div>
+
+            <div class="item img-thumbnail big">
+              <img src="img/3.jpg" alt="Flower">
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <div class="col-sm-3 grid" style="background-color:gray;">
+        <!-- <div class="row"> -->
+            <div id="myCarousel" class="carousel fade small" data-ride="carousel">
+                <!-- Wrapper for slides -->
+              <div class="carousel-inner" role="listbox">
+                <div class="item active img-thumbnail small">
+                  <img src="img/1.jpg" alt="Chania">
+                </div>
+
+                <div class="item img-thumbnail small">
+                  <img src="img/2.jpg" alt="Chania">
+                </div>
+
+                <div class="item img-thumbnail small">
+                  <img src="img/3.jpg" alt="Flower">
+                </div>
+
+                <div class="item img-thumbnail small">
+                  <img src="img/4.jpg" alt="Flower">
+                </div>
+              </div>
+              
+            </div>
+        <!-- </div> -->
+
+        <!-- <div class="row grid"> -->
+            <div id="myCarousel" class="carousel fade" data-ride="carousel">
+
+              <!-- Wrapper for slides -->
+              <div class="carousel-inner small" role="listbox">
+                <div class="item active img-thumbnail">
+                  <img src="img/2.jpg" alt="Chania">
+                </div>
+
+                <div class="item img-thumbnail small">
+                  <img src="img/3.jpg" alt="Chania">
+                </div>
+
+                <div class="item img-thumbnail small">
+                  <img src="img/4.jpg" alt="Flower">
+                </div>
+
+                <div class="item img-thumbnail small">
+                  <img src="img/1.jpg" alt="Flower">
+                </div>
+              </div>
+            </div>
+        <!-- </div> -->
+
+        <!-- <div class="well"> -->
+        <a href="/login" role="button" class="btn btn-default btn-join">
+            <span class="glyphicon glyphicon-plus"></span> Login
+        </a>
+        <!-- </div> -->
+    </div>
 
 
-<h1><%= project %></h1>
-<p class="lead">A scrapbook to remember.</p>
+    
+    
 
-<hr/>
 
-<div class="row">
-    <div class="col-sm-6">
-        <h2>Heading 1</h2>
-        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
-        <p><a href="#" role="button" class="btn btn-default">View details »</a></p>
-    </div>
-    <div class="col-sm-6">
-        <h2>Heading 2</h2>
-        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
-        <p><a href="#" role="button" class="btn btn-default">View details »</a></p>
-    </div>
-    <div class="col-sm-6">
-        <h2>Heading 3</h2>
-        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
-        <p><a href="#" role="button" class="btn btn-default">View details »</a></p>
-    </div>
-    <div class="col-sm-6">
-        <h2>Heading 4</h2>
-        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
-        <p><a href="#" role="button" class="btn btn-default">View details »</a></p>
-    </div>
-</div>
+
+
+    <!-- <div class="row">
+        <div class="col-sm-9">
+            <img class="img-responsive img-thumbnail" src="img/1.jpg" alt="Chania" > 
+        </div>
+        <div class="col-sm-3">
+            <img class="img-responsive img-thumbnail" src="img/2.jpg" alt="Chania" > 
+        </div>
+        <div class="col-sm-3">
+            <img class="img-responsive img-thumbnail" src="img/3.jpg" alt="Chania" > 
+        </div>
+        <div class="col-sm-3">
+            <h2>Join now!</h2>
+            <a href="#" role="button" class="btn btn-default">+</a>
+            <p>For a lifetime of memories.</p>
+        </div>
+    </div> -->
+</body>
+</html>
