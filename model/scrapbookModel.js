@@ -39,15 +39,15 @@ exports.syncFacebookWithId = function(facebookId) {
     return User.findOne({
         _id: facebookId
     }).then(function(user) {
-            console.log("our user is:");
-            console.log(user);
+            // console.log("our user is:");
+            // console.log(user);
 
             var token = _.find(user.tokens, { kind: 'facebook' });
             graph.setAccessToken(token.accessToken);
             return graph.getAsync(atsId+"/albums?fields=id,name,cover_photo{source}&limit=999");
         }).then(function(data) {
-            console.log("These are the albums we obtained: ");
-            console.log(data);
+            // console.log("These are the albums we obtained: ");
+            // console.log(data);
             var albums = data.data.filter(function(album) {
                 return album.cover_photo !== undefined;
             });
@@ -68,8 +68,8 @@ exports.syncFacebookWithId = function(facebookId) {
             return Promise.all([dbPromise, fbPromise]);
         }).then(function(data) {
 
-            console.log("hello, we are just about to finish this long promise call");
-            console.log(data);
+            // console.log("hello, we are just about to finish this long promise call");
+            // console.log(data);
 
             return Promise.map(data[1], function(album, index) {
                 var obj = {name: albumNames[index], parent: "main"};

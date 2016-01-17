@@ -1,0 +1,23 @@
+@footer-size: 45px;
+
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  position: relative;
+}
+
+footer {
+  position: absolute !important;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: @footer-size;
+  line-height: @footer-size;
+
+  p, ul {
+    margin-bottom: 0;
+  }
+}

@@ -7,10 +7,14 @@
     </a>
     <% if(album.location) { %>
         <%= album.location %>
+    <% } else { %>
+        <input type="text" placeholder="Enter a location here">
     <% } %>
 
     <% if(album.name) { %>
         <%= album.name %>
+    <% } else { %>
+        <input type="text" placeholder="Enter a name for your album here">
     <% } %>
 
 </div>

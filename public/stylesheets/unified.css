@@ -1,0 +1,30 @@
+.navbar-nav img {
+  width: 30px;
+  height: 30px;
+  margin: -15px 15px -15px;
+}
+.navbar ~ .container {
+  padding-top: 50px;
+}
+.body-container {
+  padding-bottom: 45px;
+}
+html {
+  height: 100%;
+}
+body {
+  min-height: 100%;
+  position: relative;
+}
+footer {
+  position: absolute !important;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 45px;
+  line-height: 45px;
+}
+footer p,
+footer ul {
+  margin-bottom: 0;
+}
