@@ -1,0 +1,16 @@
+
+
+
+<div class="scrapbook-album">
+    <a href="/scrapbook/<%= album.photos[photoIndex].albumName %>">
+        <img class="albumLink" src="<%= album.photos[photoIndex].imageUrl %>" height=200/>
+    </a>
+    <% if(album.location) { %>
+        <%= album.location %>
+    <% } %>
+
+    <% if(album.name) { %>
+        <%= album.name %>
+    <% } %>
+
+</div>

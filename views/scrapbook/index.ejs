@@ -9,21 +9,20 @@
 <div id="flipbook">
     <div class="hard"><br><h1><%= album.name %></h1></div> 
     <div class="hard"></div>
-    <% for(var i=0;i<album.photos.length;i=i+2) { %>
+    <% for(var i=0; i<album.photos.length; i=i+2) { %>
         <!-- two photos per page, can change if neccessary -->
         <div>
-        <% for(var j=i;j<i+2 && j<album.photos.length;j++) { %>
-            <% if(album.photos[j].albumName) { %>
-            <a href="/scrapbook/<%= album.photos[j].albumName %>">
-                <img class="albumLink" src="<%= album.photos[j].imageUrl %>" height=200/>
-            </a>
+        <% for(var photoIndex=i; photoIndex<i+2 && photoIndex<album.photos.length; photoIndex++) { %>
+            <% if(album.photos[photoIndex].albumName) { %>
+                <% include scrapbook_partials/scrapbook %>
             <% } else { %>
-            <img src="<%= album.photos[j].imageUrl %>" height=200/>
+                <% include scrapbook_partials/photo %>
             <% } %>
             <br>
         <% } %>
         </div>
     <% } %>
+
     <% if(Math.ceil(album.photos.length/2) % 2) { //if odd, add extra blank page %>
         <div></div>
     <% } %>
@@ -33,11 +32,11 @@
 
 
 <% /* TESTING CODE do not include %>
-<% for(var i=0;i<photos.length;i++) { %>
+<% for(var i=0; i<photos.length; i++) { %>
     <img src="<%= photos[i].source %>"/>
 <% } %>
-<% for(var i=0;i<photos.length;i++) { %>
-    <% for(var j=0; j<photos[i].data.length;j++) { %>
+<% for(var i=0; i<photos.length; i++) { %>
+    <% for(var j=0; j<photos[i].data.length; j++) { %>
         <img src="<%= photos[i].data[j].source %>" width="200" height="200"/>
 
         <p><%= photos[i].data[j].name %></p>
@@ -48,23 +47,3 @@
 <% } %>
 <% */ %>
 
-<% /* DELETE THIS %>
-<div class="row">
-    <div class="col-sm-6">
-        <h4>Your name</h4>
-        <p><%= me.name || "unknown" %></p>
-    </div>
-    <div class="col-sm-6">
-        <h4>Your email</h4>
-        <p><%= me.email || "unknown" %></p>
-    </div>
-    <div class="col-sm-6">
-        <h4>Your gender</h4>
-        <p><%= me.gender || "unknown" %></p>
-    </div>
-    <div class="col-sm-6">
-        <h4>Your timezone</h4>
-        <p><%= me.timezone || "unknown" %></p>
-    </div>
-</div>
-<% */ %>
