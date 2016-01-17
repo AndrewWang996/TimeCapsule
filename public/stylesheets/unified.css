@@ -1,3 +1,6 @@
+/**
+ *
+ */
 .navbar ~ .container {
   padding-top: 50px;
 }
@@ -23,6 +26,22 @@ footer {
 footer p,
 footer ul {
   margin-bottom: 0;
+}
+input {
+  display: block;
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-bottom: solid 2px #c9c9c9;
+  width: 100%;
+  font-family: "Open Sans", sans-serif;
+  font-size: 18px;
+  -webkit-appearance: none;
+  outline: none;
+}
+input:focus {
+  border-bottom: solid 2px #969696;
+  outline: none;
 }
 /* FONT PATH
  * -------------------------- */
@@ -1957,4 +1976,16 @@ footer ul {
   width: 30px;
   height: 30px;
   margin: -15px 15px -15px;
+}
+#flipbook input {
+  display: block;
+  margin: 0 auto;
+  padding: 0;
+  border: none;
+  border-bottom: solid 2px #c9c9c9;
+  width: 40%;
+  font-family: "Open Sans", sans-serif;
+  font-size: 18px;
+  -webkit-appearance: none;
+  text-align: center;
 }

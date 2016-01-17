@@ -14,8 +14,10 @@
         <div>
         <% for(var photoIndex=i; photoIndex<i+2 && photoIndex<album.photos.length; photoIndex++) { %>
             <% if(album.photos[photoIndex].albumName) { %>
+                <% innerScrapbook = album.photos[photoIndex]; %>
                 <% include scrapbook_partials/scrapbook %>
             <% } else { %>
+                <% innerPhoto = album.photos[photoIndex]; %>
                 <% include scrapbook_partials/photo %>
             <% } %>
             <br>

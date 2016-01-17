@@ -5,16 +5,20 @@
     <a href="/scrapbook/<%= album.photos[photoIndex].albumName %>">
         <img class="albumLink" src="<%= album.photos[photoIndex].imageUrl %>" height=200/>
     </a>
-    <% if(album.location) { %>
-        <%= album.location %>
-    <% } else { %>
-        <input type="text" placeholder="Enter a location here">
-    <% } %>
 
-    <% if(album.name) { %>
-        <%= album.name %>
+    </br>
+    <% if(innerScrapbook.albumName) { %>
+        <%= innerScrapbook.albumName %>
     <% } else { %>
         <input type="text" placeholder="Enter a name for your album here">
+    <% } %>
+
+    </br>
+
+    <% if(innerScrapbook.location) { %>
+        <%= innerScrapbook.location %>
+    <% } else { %>
+        <input type="text" contenteditable="true" placeholder="Enter a location here">
     <% } %>
 
 </div>
