@@ -58,16 +58,19 @@ exports.setScrapbookLocation = function(location, scrapbookName) {
     console.log("scrapbook model location log");
     console.log(location);
 
-    scrapbookModel.findOne({name: scrapbookName}).then(function(scrapbook) {
-        console.log(scrapbook);
-        console.log(scrapbook.location);
-    });
+    scrapbookModel.findOne({name: scrapbookName})
+        .then(function(scrapbook) {
+
+            return scrapbookModel.update({name : scrapbook.parent, 'photos.albumName' : scrapbookName},
+                { $set : { 'photos.$.location' : location} } );
+        });
 
     scrapbookModel.update({name: scrapbookName}, {$set: {location: location}}, function() {
         scrapbookModel.findOne({name: scrapbookName}).then(function(scrapbook) {
             console.log(scrapbook.location);
         });
     });
+
 
     /*
     scrapbookModel.findOne({name: scrapbookName}).then(function(scrapbook) {

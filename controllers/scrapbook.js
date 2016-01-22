@@ -16,8 +16,6 @@ exports.setScrapbookLocation = function(req, res) {
         place_id: req.body.place_id
     };
 
-    console.log(location);
-
     scrapbookModel.setScrapbookLocation(location, scrapbookName);
     res.end("done");
 };
@@ -31,12 +29,12 @@ exports.getBookWithName = function(req, res) {
     console.log(decodeURIComponent(req.params.name));
 
     //CALL THIS WHEN YOU NEED TO SYNC
-
-
-    scrapbookModel.syncFacebookWithId(req.user._id).then(function() {
-        console.log("synced with " + req.user._id);
-        console.log("DONE!");
-    });
+    if(false)  {
+        scrapbookModel.syncFacebookWithId(req.user._id).then(function() {
+            console.log("synced with " + req.user._id);
+            console.log("DONE!");
+        });
+    }
 
 
     /*
