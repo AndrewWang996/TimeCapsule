@@ -1,1 +1,28 @@
-<img src="<%= album.photos[photoIndex].imageUrl %>" height=200/>
+
+
+
+
+
+
+<div parent-scrapbook="<%= innerPhoto.albumName %>" photo-id="<%= innerPhoto._id %>" class="scrapbook-photo">
+    <a href="/scrapbook/<%=innerPhoto.albumName %>/<%= innerPhoto.photoName %>">
+        <img src="<%= innerPhoto.imageUrl %>" height=200/>
+    </a>
+
+    </br>
+
+    <% if(innerPhoto.photoName) { %>
+        <%= innerPhoto.photoName %>
+    <% } else { %>
+        <input type="text" class="photo-name-input" placeholder="Enter a name for your photo here">
+    <% } %>
+
+    <% if(innerPhoto.location) { %>
+        </br>
+        <%= innerPhoto.location.vicinity %>
+    <% } else { %>
+        <input type="text" class="photo-location-input" contenteditable="true" placeholder="Enter a location here">
+    <% } %>
+
+
+</div>

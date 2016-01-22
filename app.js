@@ -135,7 +135,10 @@ app.get('/scrapbook', scrapbookController.getBook);
 app.get('/scrapbook/:name', scrapbookController.getBookWithName);
 //app.get('/scrapbook/:name/:page', scrapbookController.getBookWithNameAndPage);
 
-app.post('/scrapbook/:name/save', scrapbookController.setScrapbookLocation);
+app.post('/scrapbook/:name/save-location', scrapbookController.setScrapbookLocation);
+app.post('/scrapbook/:name/:photoName/save-location', scrapbookController.setPhotoLocation);
+
+app.post('/scrapbook/:name/:photoName/save-name', scrapbookController.setPhotoName);
 
 
 /**

@@ -14,15 +14,15 @@
     <% for(var i=0; i<album.photos.length; i=i+2) { %>
         <!-- two photos per page, can change if neccessary -->
         <div>
+
         <% for(var photoIndex=i; photoIndex<i+2 && photoIndex<album.photos.length; photoIndex++) { %>
-            <% if(album.photos[photoIndex].albumName) { %>
-                <% innerScrapbook = album.photos[photoIndex]; %>
-                <% include scrapbook_partials/scrapbook %>
-            <% } else { %>
+            <% if(album.photos[photoIndex].isPhoto) { %>
                 <% innerPhoto = album.photos[photoIndex]; %>
                 <% include scrapbook_partials/photo %>
+            <% } else { %>
+                <% innerScrapbook = album.photos[photoIndex]; %>
+                <% include scrapbook_partials/scrapbook %>
             <% } %>
-            <br>
         <% } %>
         </div>
     <% } %>
@@ -33,21 +33,4 @@
     <div class="hard"></div>
     <div class="hard"></div>
 </div>
-
-
-<% /* TESTING CODE do not include %>
-<% for(var i=0; i<photos.length; i++) { %>
-    <img src="<%= photos[i].source %>"/>
-<% } %>
-<% for(var i=0; i<photos.length; i++) { %>
-    <% for(var j=0; j<photos[i].data.length; j++) { %>
-        <img src="<%= photos[i].data[j].source %>" width="200" height="200"/>
-
-        <p><%= photos[i].data[j].name %></p>
-        <p><%= photos[i].data[j].created_time %></p>
-        <p><%= photos[i].data[j].place %></p>
-    <% } %>
-    <hr/>
-<% } %>
-<% */ %>
 

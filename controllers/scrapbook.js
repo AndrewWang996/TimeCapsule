@@ -4,6 +4,44 @@ var _ = require('lodash');
 var Promise = require('bluebird');
 var scrapbookModel = require('../model/scrapbookModel');
 
+
+exports.setPhotoName = function(req, res) {
+    var scrapbookName = req.params.name;
+    var photoName = req.params.photoName;
+
+    var photoUrl = req.body.url;
+    var photoId = req.body._id;
+
+    /*
+    console.log(req.body);
+    console.log('setting photo name');
+    console.log('scrapbook name = ' + scrapbookName);
+    console.log('photo name = ' + photoName);
+    console.log('photo url = ' + photoUrl);
+    console.log('photo id = ' + photoId);
+    */
+
+    scrapbookModel.setPhotoName(scrapbookName, photoUrl, photoId, photoName);
+
+    res.end("finish setting photo name");
+}
+
+exports.setPhotoLocation = function(req, res) {
+    var scrapbookName = req.params.name;
+    var photoName = req.params.photoName;
+
+    var location = {
+        address: req.body.address,
+        vicinity: req.body.vicinity,
+        latitude: req.body.latitude,
+        longitude: req.body.longitude,
+        place_id: req.body.place_id
+    };
+
+    scrapbookModel.setPhotoLocation(scrapbookName, photoName, location);
+    res.end("finish setting photo location");
+}
+
 exports.setScrapbookLocation = function(req, res) {
 
     var scrapbookName = req.params.name;
@@ -16,8 +54,8 @@ exports.setScrapbookLocation = function(req, res) {
         place_id: req.body.place_id
     };
 
-    scrapbookModel.setScrapbookLocation(location, scrapbookName);
-    res.end("done");
+    scrapbookModel.setScrapbookLocation(scrapbookName, location);
+    res.end("finish setting scrapbook location");
 };
 
 
@@ -47,8 +85,6 @@ exports.getBookWithName = function(req, res) {
 
     scrapbookModel.getScrapbook(decodeURIComponent(req.params.name))
         .then(function(scrapbook) {
-
-            console.log(scrapbook);
 
             res.render("scrapbook/index", {
                 title: "Time Capsule Scrapbook",

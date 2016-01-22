@@ -1,6 +1,9 @@
 @import "variables.less";
 
+
+
 #flipbook {
+
     input {
         display: block;
         margin: 0 auto;
@@ -12,5 +15,51 @@
         font-size: 18px;
         -webkit-appearance: none;
         text-align: center;
+    }
+
+    .scrapbook-album {
+
+        padding-top: @scrapbook-item-padding-top;
+
+        a:hover {
+            text-decoration: none;
+        }
+
+        &::selection {
+            background: transparent;
+        }
+
+        img {
+            -khtml-user-select: none;
+            -o-user-select: none;
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+    }
+
+    .scrapbook-photo {
+
+        padding-top: @scrapbook-item-padding-top;
+
+        a:hover {
+            text-decoration: none;
+        }
+
+        &::selection {
+            background: transparent;
+        }
+
+        img {
+            -khtml-user-select: none;
+            -o-user-select: none;
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+    }
+
+    &::selection {
+        background: transparent;
     }
 }

@@ -1989,3 +1989,38 @@ input:focus {
   -webkit-appearance: none;
   text-align: center;
 }
+#flipbook .scrapbook-album {
+  padding-top: 25px;
+}
+#flipbook .scrapbook-album a:hover {
+  text-decoration: none;
+}
+#flipbook .scrapbook-album::selection {
+  background: transparent;
+}
+#flipbook .scrapbook-album img {
+  -khtml-user-select: none;
+  -o-user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+#flipbook .scrapbook-photo {
+  padding-top: 25px;
+}
+#flipbook .scrapbook-photo a:hover {
+  text-decoration: none;
+}
+#flipbook .scrapbook-photo::selection {
+  background: transparent;
+}
+#flipbook .scrapbook-photo img {
+  -khtml-user-select: none;
+  -o-user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+#flipbook::selection {
+  background: transparent;
+}

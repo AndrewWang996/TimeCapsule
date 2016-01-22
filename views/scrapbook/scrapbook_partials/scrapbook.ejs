@@ -11,7 +11,7 @@
     <% if(innerScrapbook.albumName) { %>
         <%= innerScrapbook.albumName %>
     <% } else { %>
-        <input type="text" placeholder="Enter a name for your album here">
+        <input type="text" class="name-input" placeholder="Enter a name for your album here">
     <% } %>
 
     </br>
@@ -19,7 +19,7 @@
     <% if(innerScrapbook.location) { %>
         <%= innerScrapbook.location.vicinity %>
     <% } else { %>
-        <input type="text" contenteditable="true" placeholder="Enter a location here">
+        <input type="text" class="scrapbook-location-input" contenteditable="true" placeholder="Enter a location here">
     <% } %>
 
 
