@@ -23,6 +23,7 @@
     "fbgraph": "^1.1.0",
     "font-awesome": "^4.5.0",
     "gulp": "^3.9.0",
+    "less": "^2.5.3",
     "lodash": "^3.10.1",
     "mongoose": "^4.3.5",
     "morgan": "~1.6.1",
