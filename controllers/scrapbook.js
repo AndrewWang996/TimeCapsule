@@ -2,7 +2,26 @@ var graph;
 
 var _ = require('lodash');
 var Promise = require('bluebird');
-var Scrapbook = require('../model/scrapbookModel');
+var scrapbookModel = require('../model/scrapbookModel');
+
+exports.setScrapbookLocation = function(req, res) {
+
+    var scrapbookName = req.params.name;
+
+    var location = {
+        address: req.body.address,
+        vicinity: req.body.vicinity,
+        latitude: req.body.latitude,
+        longitude: req.body.longitude,
+        place_id: req.body.place_id
+    };
+
+    console.log(location);
+
+    scrapbookModel.setScrapbookLocation(location, scrapbookName);
+    res.end("done");
+};
+
 
 exports.getBook = function(req, res) {
     res.redirect(req.url+"/main");
@@ -12,10 +31,13 @@ exports.getBookWithName = function(req, res) {
     console.log(decodeURIComponent(req.params.name));
 
     //CALL THIS WHEN YOU NEED TO SYNC
-    Scrapbook.syncFacebookWithId(req.user._id).then(function() {
+
+
+    scrapbookModel.syncFacebookWithId(req.user._id).then(function() {
         console.log("synced with " + req.user._id);
         console.log("DONE!");
     });
+
 
     /*
     Scrapbook.syncFacebook(req.user.email).then(function() {
@@ -25,14 +47,18 @@ exports.getBookWithName = function(req, res) {
     */
     ///////////////////////////////////////
 
-    Scrapbook.getAlbum(decodeURIComponent(req.params.name))
-        .then(function(album) {
+    scrapbookModel.getScrapbook(decodeURIComponent(req.params.name))
+        .then(function(scrapbook) {
+
+            console.log(scrapbook);
+
             res.render("scrapbook/index", {
                 title: "Time Capsule Scrapbook",
-                album: album
+                album: scrapbook
             });
         });
 };
+
 
 // NOT NEEDED flipping done with turn.js
 /*exports.getBookWithNameAndPage = function(req, res) {

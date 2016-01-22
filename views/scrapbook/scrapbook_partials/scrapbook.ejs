@@ -7,6 +7,7 @@
     </a>
 
     </br>
+
     <% if(innerScrapbook.albumName) { %>
         <%= innerScrapbook.albumName %>
     <% } else { %>
@@ -16,9 +17,10 @@
     </br>
 
     <% if(innerScrapbook.location) { %>
-        <%= innerScrapbook.location %>
+        <%= innerScrapbook.location.vicinity %>
     <% } else { %>
         <input type="text" contenteditable="true" placeholder="Enter a location here">
     <% } %>
+
 
 </div>

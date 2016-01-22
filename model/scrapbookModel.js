@@ -4,16 +4,34 @@ var mongoose = require('mongoose');
 var Promise = require('bluebird');
 mongoose.Promise = Promise;
 
+var locationSchema = mongoose.Schema({
+    address: String,
+    vicinity: String,
+    latitude: Number,
+    longitude: Number,
+    place_id: String
+});
+
+/*
+ var photoSchema = mongoose.Schema({
+ albumName: String,
+ photoName: String,
+ imageUrl: String,
+ timestamp: Date,
+ location: locationSchema
+ });
+ */
+
 var scrapbookSchema = mongoose.Schema({
     name: String, // TODO make unique constraint
     parent: String,
-    location: String,
+    location: locationSchema,
     photos: [{
         albumName: String,
         photoName: String,
         imageUrl: String,
         timestamp: String,
-        location: String
+        location: locationSchema
     }]
 });
 
@@ -32,6 +50,38 @@ var atsId = 116850108484293; // use "me" later when we have user_photos
 // Note: Facebook does put a limit on the limit, so
 // might not actually return all albums if there's a
 // lot of albums. But it should do for now.
+
+
+exports.setScrapbookLocation = function(location, scrapbookName) {
+
+    console.log(scrapbookName);
+    console.log("scrapbook model location log");
+    console.log(location);
+
+    scrapbookModel.findOne({name: scrapbookName}).then(function(scrapbook) {
+        console.log(scrapbook);
+        console.log(scrapbook.location);
+    });
+
+    scrapbookModel.update({name: scrapbookName}, {$set: {location: location}}, function() {
+        scrapbookModel.findOne({name: scrapbookName}).then(function(scrapbook) {
+            console.log(scrapbook.location);
+        });
+    });
+
+    /*
+    scrapbookModel.findOne({name: scrapbookName}).then(function(scrapbook) {
+        var newScrapbook = {
+            name: scrapbookName,
+            parent: scrapbook.parent,
+            location: location,
+            photos: scrapbook.photos
+        };
+        return scrapbookModel.findOneAndUpdate({name: scrapbookName}, newScrapbook, {upsert: true});
+    });
+    */
+};
+
 
 exports.syncFacebookWithId = function(facebookId) {
     var albumNames = []
@@ -74,6 +124,7 @@ exports.syncFacebookWithId = function(facebookId) {
             return Promise.map(data[1], function(album, index) {
                 var obj = {name: albumNames[index], parent: "main"};
                 obj.photos = album.data.map(function(photo) {
+
                     return {
                         photoName: photo.name,
                         imageUrl: photo.source,
@@ -141,7 +192,7 @@ exports.syncFacebook = function(email) {
         });
 };
 
-exports.getAlbum = function(name) {
+exports.getScrapbook = function(name) {
     return scrapbookModel.findOne({
         name: name
     });

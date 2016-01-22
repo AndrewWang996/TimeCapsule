@@ -135,6 +135,8 @@ app.get('/scrapbook', scrapbookController.getBook);
 app.get('/scrapbook/:name', scrapbookController.getBookWithName);
 //app.get('/scrapbook/:name/:page', scrapbookController.getBookWithNameAndPage);
 
+app.post('/scrapbook/:name/save', scrapbookController.setScrapbookLocation);
+
 
 /**
  * OAuth authentication routes. (Sign in)
