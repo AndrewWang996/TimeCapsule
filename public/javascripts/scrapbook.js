@@ -1,5 +1,4 @@
 
-console.log("index loaded");
 
 
 $(document).ready(function() {
@@ -32,6 +31,10 @@ $(document).ready(function() {
             });
         });
 
+
+
+
+
     $('#flipbook input.photo-location-input').geocomplete({
 
     }).bind("geocode:result", function(event, result) {
@@ -63,9 +66,7 @@ $(document).ready(function() {
                     // nothing
                 },
                 dataType: 'json'
-            })
-            console.log(photoName);
-            console.log(locationObject);
+            });
         });
 
 
@@ -94,8 +95,6 @@ $(document).ready(function() {
         var imgElement = $(anchorElement.children[0]);
         var photoUrl = $.trim(imgElement.attr('src'));
 
-
-        console.log('PERFORMING POST REQUEST NOW, set photo name');
         $.ajax({
             url: '/scrapbook/'+parentAlbumName+'/'+photoName+'/save-name',
             type: 'POST',
