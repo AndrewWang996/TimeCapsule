@@ -64,13 +64,11 @@
 
 .chronoline-draggable {
     cursor:hand;
-    cursor:grab;
     cursor:-moz-grab;
     cursor:-webkit-grab;
 }
 
 .chronoline-draggable.dragging {
-    cursor:grabbing;
     cursor:-moz-grabbing;
     cursor:-webkit-grabbing;
 }

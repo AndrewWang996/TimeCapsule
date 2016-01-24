@@ -141,6 +141,7 @@ app.post('/scrapbook/:name/:photoName/save-location', scrapbookController.setPho
 app.post('/scrapbook/:name/:photoName/save-name', scrapbookController.setPhotoName);
 
 
+
 /**
  * OAuth authentication routes. (Sign in)
  */

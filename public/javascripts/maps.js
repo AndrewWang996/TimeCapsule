@@ -1,5 +1,9 @@
 
 
+
+// note that we are currently using google maps v3 WITHOUT an API key.
+// should we expect heavy traffic, we will have to use an API key.
+
 $.getScript("js/lib/googlemaps.js", function() {
     console.log('maps loaded');
     var mapOptions = {
