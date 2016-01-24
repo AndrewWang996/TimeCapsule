@@ -12,6 +12,8 @@ var locationSchema = mongoose.Schema({
     place_id: String
 });
 
+exports.locationSchema = locationSchema;
+
 /*
  var photoSchema = mongoose.Schema({
  albumName: String,
@@ -35,6 +37,8 @@ var scrapbookSchema = mongoose.Schema({
         location: locationSchema
     }]
 });
+
+exports.scrapbookSchema = scrapbookSchema;
 
 var scrapbookModel = mongoose.model("Scrapbook", scrapbookSchema);
 
@@ -92,6 +96,11 @@ exports.setScrapbookLocation = function(scrapbookName, location) {
     });
 };
 
+exports.getMainScrapbook = function() {
+    return scrapbookModel.findOne({
+        name: 'main'
+    });
+}
 
 exports.getScrapbook = function(name) {
     return scrapbookModel.findOne({
