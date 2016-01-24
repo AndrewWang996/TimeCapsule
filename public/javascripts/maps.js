@@ -1,7 +1,26 @@
 
 
+$.getScript("js/lib/googlemaps.js", function() {
+    console.log('maps loaded');
+    var mapOptions = {
+        center: new google.maps.LatLng(12.2484861, 109.183363),
+        zoom: 8
+    };
+    var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+
+    console.log(document.getElementById('map'));
+    console.log(new google.maps.LatLng(12.2484861, 109.183363));
+
+    console.log(map);
+
+    var directionsService = new google.maps.DirectionsService();
+    var directionsDisplay = new google.maps.DirectionsRenderer();
+});
 
 $(document).ready(function() {
+
+
     var events = [
         {dates: [new Date(2011, 2, 31)], title: "2011 Season Opener", section: 0},
         {dates: [new Date(2012, 1, 29)], title: "Spring Training Begins", section: 2},
