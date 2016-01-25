@@ -135,6 +135,7 @@ app.get('/maps', mapsController.getIndex);
 //app.get('/scrapbook', scrapbookController.getIndex);
 app.get('/scrapbook', scrapbookController.getBook);
 app.get('/scrapbook/:name', scrapbookController.getBookWithName);
+app.get('/scrapbook/:name/:photoId', scrapbookController.getPostcard);
 //app.get('/scrapbook/:name/:page', scrapbookController.getBookWithNameAndPage);
 
 app.post('/scrapbook/:name/save-location', scrapbookController.setScrapbookLocation);

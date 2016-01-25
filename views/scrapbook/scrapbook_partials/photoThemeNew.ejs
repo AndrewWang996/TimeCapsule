@@ -6,7 +6,7 @@
     <div parent-scrapbook="<%= innerPhoto.albumName %>" photo-id="<%= innerPhoto._id %>" class="scrapbook-photo evenlala polaroid">
 <% } %>
 
-    <a href="/scrapbook/<%=innerPhoto.albumName %>?<%= innerPhoto.imageUrl %>">
+    <a href="/scrapbook/<%=innerPhoto.albumName %>/<%= photoIndex %>" target="_blank">
         <img src="<%= innerPhoto.imageUrl %>" class="photoz"/>
     </a>
 

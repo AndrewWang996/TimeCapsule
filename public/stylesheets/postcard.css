@@ -1,0 +1,54 @@
+p {
+    font-family: 'Indie Flower', cursive;
+    font-size: 20px;
+    display: inline-block;
+}
+
+input {
+    font-family: 'Indie Flower', cursive;
+    font-size: 16px;
+    width:200px;
+    display: inline-block;
+}
+
+textarea {
+    font-family: 'Indie Flower', cursive;
+    font-size: 16px;
+    border: 3px solid #cccccc;
+    width: 250px;
+    height: 300px;
+    resize: none;
+}
+
+.pphoto {
+	height: 400px;
+    overflow: hidden;
+    display: inline-block;
+    vertical-align: middle;
+    padding: 5px;
+    border-radius: 10px;
+
+}
+
+.pcontent {
+	display: inline-block;
+	border-left-style: dotted;
+    border-color: rgba(140,140,140,0.5);
+    padding: 10px;
+	height: 400px;
+    width: 300px;
+    vertical-align: middle;
+}
+
+.postcard{
+    padding: 4px;
+    line-height: 1.42857143;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    transition: all .2s ease-in-out;
+    top: 25%;
+    left: 30%;
+    margin-right: auto;
+    position: absolute;
+}

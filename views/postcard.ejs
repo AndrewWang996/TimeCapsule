@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<% layout('layout') -%>
+
+<link href='https://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="/stylesheets/postcard.css">
+
+<body background="/img/desk.jpg">
+
+<% innerPhoto=album.photos[photoIndex]; %>
+
+<div class="postcard">
+	<img src="<%= innerPhoto.imageUrl %>" class="pphoto">
+	<div class="pcontent">
+		<div align="center">
+			<p>From:</p>
+			<input type="text" class="photo-name-input" placeholder="Name">
+		</div>
+		<div align="center">
+			<p>To:</p>
+			<input type="text" class="photo-name-input" placeholder="Name">
+		</div>
+
+		<!-- Message -->
+		<div align="center">
+			<% if(innerPhoto.photoName) { %>
+			    <p><%= innerPhoto.photoName %></p>
+		    <% } else { %>
+		    	<textarea> Enter a message here. </textarea>
+		    <% } %>
+	    </div>
+
+	</div>
+</div>
+
+</body>

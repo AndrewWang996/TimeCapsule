@@ -28,6 +28,7 @@ exports.setPhotoName = function(req, res) {
 }
 
 exports.setPhotoLocation = function(req, res) {
+    console.log("B4");
     var scrapbookName = req.params.name;
     var photoName = req.params.photoName;
 
@@ -46,7 +47,7 @@ exports.setPhotoLocation = function(req, res) {
 }
 
 exports.setScrapbookLocation = function(req, res) {
-
+    console.log("B3");
     var scrapbookName = req.params.name;
 
     var location = {
@@ -65,7 +66,7 @@ exports.setScrapbookLocation = function(req, res) {
 
 
 exports.getBook = function(req, res) {
-    // console.log("BASDFHGJKL");
+    console.log("B2");
     res.redirect(req.url+"/main");
 };
 
@@ -75,6 +76,7 @@ var Picasa = new picasa();
 */
 
 exports.getBookWithName = function(req, res) {
+    console.log("B1");
 /*
     console.log(_.find(req.user.tokens, {kind: "google"}));
     var token = _.find(req.user.tokens, {kind: "google"});
@@ -125,6 +127,16 @@ console.log(req.user.google);
  });
  };*/
 
+exports.getPostcard = function(req, res) {
+    scrapbookModel.getScrapbook(decodeURIComponent(req.params.name))
+        .then(function(scrapbook) {
+            res.render("postcard", {
+                title: "Time Capsule Scrapbook",
+                album: scrapbook,
+                photoIndex: req.params.photoId
+            });
+        });
+};
 
 
 
