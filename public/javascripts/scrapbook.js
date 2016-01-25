@@ -20,6 +20,8 @@ $(document).ready(function() {
                 place_id: result.place_id
             };
 
+            console.log(locationObject);
+
             $.ajax({
                 url: '/scrapbook/'+scrapbookName+'/save-location',
                 type: 'POST',
@@ -43,6 +45,7 @@ $(document).ready(function() {
 
             if(photoName === "") {
                 alert("Please first enter a name for your photo.");
+                return;
             }
 
             var locationObject = {
@@ -53,7 +56,7 @@ $(document).ready(function() {
                 place_id: result.place_id
             };
 
-            var jQueryNode = $(event.currentTarget.parentElement);
+            var jQueryNode = $($(event.currentTarget).parents('.scrapbook-photo')[0]);
 
             var scrapbookName = $.trim(jQueryNode.attr('parent-scrapbook'));
 
@@ -83,15 +86,15 @@ $(document).ready(function() {
 
         if(photoName === "") {
             alert("Please enter a name containing non whitespace characters");
+            return;
         }
 
-        var jQueryNode = $(event.currentTarget.parentElement);
-
+        var jQueryNode = $($(event.currentTarget).parents('.scrapbook-photo')[0]);
         var parentAlbumName = $.trim(jQueryNode.attr('parent-scrapbook'));
 
         var photoId = $.trim(jQueryNode.attr('photo-id'));
 
-        var anchorElement = $(event.currentTarget).prevAll('a')[0];
+        var anchorElement = $(event.currentTarget.parentElement).prevAll('a')[0];
         var imgElement = $(anchorElement.children[0]);
         var photoUrl = $.trim(imgElement.attr('src'));
 

@@ -23,7 +23,8 @@ exports.setPhotoName = function(req, res) {
 
     scrapbookModel.setPhotoName(scrapbookName, photoUrl, photoId, photoName);
 
-    res.end("finish setting photo name");
+    res.redirect('back');
+    // res.end("finish setting photo name");
 }
 
 exports.setPhotoLocation = function(req, res) {
@@ -39,7 +40,9 @@ exports.setPhotoLocation = function(req, res) {
     };
 
     scrapbookModel.setPhotoLocation(scrapbookName, photoName, location);
-    res.end("finish setting photo location");
+
+    res.redirect('back');
+    // res.end("finish setting photo location");
 }
 
 exports.setScrapbookLocation = function(req, res) {
@@ -55,7 +58,9 @@ exports.setScrapbookLocation = function(req, res) {
     };
 
     scrapbookModel.setScrapbookLocation(scrapbookName, location);
-    res.end("finish setting scrapbook location");
+
+    res.redirect('back');
+    // res.end("finish setting scrapbook location");
 };
 
 
@@ -82,7 +87,7 @@ console.log(req.user.google);
 */
 
     //CALL THIS WHEN YOU NEED TO SYNC
-    if(true)  {
+    if(false)  {
         scrapbookModel.syncFacebookWithId(req.user._id).then(function() {
             console.log("synced with " + req.user._id);
             console.log("DONE!");
