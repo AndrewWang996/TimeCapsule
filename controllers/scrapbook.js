@@ -64,8 +64,9 @@ exports.getBook = function(req, res) {
 };
 
 // TESTING
-var picasa = require('picasa');
+/*var picasa = require('picasa');
 var Picasa = new picasa();
+*/
 
 exports.getBookWithName = function(req, res) {
 /*
