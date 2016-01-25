@@ -102,12 +102,14 @@ console.log(req.user.google);
     */
     ///////////////////////////////////////
 
+//console.log('theme');
+//console.log(req.session.theme);
     scrapbookModel.getScrapbook(decodeURIComponent(req.params.name))
         .then(function(scrapbook) {
-
             res.render("scrapbook/index", {
                 title: "Time Capsule Scrapbook",
-                album: scrapbook
+                album: scrapbook,
+                theme: req.session.theme
             });
         });
 };

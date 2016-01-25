@@ -21,3 +21,21 @@ exports.logout = function(req, res) {
     res.redirect('/');
 };
 
+exports.account = function(req, res) {
+    // LIST OF THEMES
+    req.session.theme = req.session.theme || 'Leather'; //default
+    console.log(req.session.theme);
+    var themes = ['Leather', 'Ice', 'Paris'];
+    res.render('account/account', {
+        title: "Settings",
+        themes: themes,
+        curTheme: req.session.theme
+    });
+};
+
+exports.setTheme = function(req, res) {
+    req.session.theme = req.body.theme;
+    //console.log(req.session.theme);
+    res.status(200);
+    res.end('success');
+};

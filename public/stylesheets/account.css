@@ -1,0 +1,13 @@
+img.theme {
+    height: 180px;
+    width: 150px;
+    border-radius: 15px;
+}
+
+img.theme:hover {
+    box-shadow: 3px 3px 5px #666666;
+}
+
+img.selected {
+    border: 4px solid black;
+}
