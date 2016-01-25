@@ -7,7 +7,7 @@
 <script src="/javascripts/scrapbook.js"></script>
 <script src="/javascripts/form.js"></script>
 <link href='https://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" href="/stylesheets/photoTheme.css">
+<link rel="stylesheet" href="/stylesheets/photoThemeNew.css">
 
 <body background="/img/desk.jpg">
 </br>
@@ -28,7 +28,7 @@
                 <% } else { %>
                     <% oddPhoto = true; %>
                 <% } %>
-                <% include scrapbook_partials/photoTheme %>
+                <% include scrapbook_partials/photoThemeNew %>
             <% } else { %>
                 <% innerScrapbook = album.photos[photoIndex]; %>
                 <% include scrapbook_partials/scrapbook %>
