@@ -12,6 +12,8 @@ var locationSchema = mongoose.Schema({
     place_id: String
 });
 
+exports.locationSchema = locationSchema;
+
 /*
  var photoSchema = mongoose.Schema({
  albumName: String,
@@ -36,6 +38,8 @@ var scrapbookSchema = mongoose.Schema({
     }]
 });
 
+exports.scrapbookSchema = scrapbookSchema;
+
 var scrapbookModel = mongoose.model("Scrapbook", scrapbookSchema);
 
 //Model methods
@@ -47,7 +51,7 @@ var _ = require('lodash');
 var graph = Promise.promisifyAll(require('fbgraph'));
 
 var atsId = 116850108484293; // use "me" later when we have user_photos
-
+//atsId="me"
 
 exports.setPhotoName = function(scrapbookName, photoUrl, photoId, newPhotoName) {
 
@@ -92,6 +96,11 @@ exports.setScrapbookLocation = function(scrapbookName, location) {
     });
 };
 
+exports.getMainScrapbook = function() {
+    return scrapbookModel.findOne({
+        name: 'main'
+    });
+}
 
 exports.getScrapbook = function(name) {
     return scrapbookModel.findOne({
@@ -114,10 +123,11 @@ exports.syncFacebookWithId = function(facebookId) {
 
             var token = _.find(user.tokens, { kind: 'facebook' });
             graph.setAccessToken(token.accessToken);
-            return graph.getAsync(atsId+"/albums?fields=id,name,cover_photo{source}&limit=999");
+//atsId = user.facebook;           
+ return graph.getAsync(atsId+"/albums?fields=id,name,cover_photo{source}&limit=999");
         }).then(function(data) {
-            // console.log("These are the albums we obtained: ");
-            // console.log(data);
+             console.log("These are the albums we obtained: ");
+             console.log(data);
             var albums = data.data.filter(function(album) {
                 return album.cover_photo !== undefined;
             });
