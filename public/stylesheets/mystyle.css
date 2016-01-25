@@ -5,6 +5,7 @@ img.albumLink {
 #flipbook{
     width:1000px;
     height:600px;
+    outline-style: solid;
 }
 
 #flipbook .page{

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<link href='https://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="/stylesheets/photoTheme.css">
+
+<div parent-scrapbook="<%= innerPhoto.albumName %>" photo-id="<%= innerPhoto._id %>" class="scrapbook-photo">
+    <a href="/scrapbook/<%=innerPhoto.albumName %>/<%= innerPhoto.photoName %>">
+        <% if (oddPhoto) { %>
+    		<img src="<%= innerPhoto.imageUrl %>" class="oddlala img-thumbnail"/>
+    	<% } else { %> 
+    		<img src="<%= innerPhoto.imageUrl %>" class="evenlala img-thumbnail"/>
+    	<% } %>
+    
+    </a>
+
+    <% if (oddPhoto) { %>
+    	<div class="oddDiv">
+    <% } else { %> 
+    	<div class="evenDiv">
+    <% } %>
+
+    <% if(innerPhoto.photoName) { %>
+    	<% if (oddPhoto) { %>
+	    	<p><%= innerPhoto.photoName %></p>
+	    <% } else { %> 
+	    	<p align="left"><%= innerPhoto.photoName %></p>
+	    <% } %>
+    <% } else { %>
+    	<input type="text" class="photo-name-input" placeholder="Enter a caption here">
+    <% } %>
+
+    <% if(innerPhoto.location) { %>
+        </br>
+        <% if (oddPhoto) { %>
+	    	<p><%= innerPhoto.location.vicinity %></p>
+	    <% } else { %> 
+	    	<p align="left"><%= innerPhoto.location.vicinity %></p>
+	    <% } %>
+    <% } else { %>
+    	<input type="text" class="photo-location-input" contenteditable="true" placeholder="Enter a location here">
+    <% } %>
+    </div>
+
+    </br>
+
+</div>
