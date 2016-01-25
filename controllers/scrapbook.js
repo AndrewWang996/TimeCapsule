@@ -65,6 +65,7 @@ exports.setScrapbookLocation = function(req, res) {
 
 
 exports.getBook = function(req, res) {
+    // console.log("BASDFHGJKL");
     res.redirect(req.url+"/main");
 };
 
@@ -121,21 +122,6 @@ console.log(req.user.google);
  photos: []
  });
  };*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

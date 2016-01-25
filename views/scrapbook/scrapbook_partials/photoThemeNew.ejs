@@ -6,31 +6,21 @@
     <div parent-scrapbook="<%= innerPhoto.albumName %>" photo-id="<%= innerPhoto._id %>" class="scrapbook-photo evenlala polaroid">
 <% } %>
 
-    <a href="/scrapbook/<%=innerPhoto.albumName %>/<%= innerPhoto.photoName %>">
+    <a href="/scrapbook/<%=innerPhoto.albumName %>?<%= innerPhoto.imageUrl %>">
         <img src="<%= innerPhoto.imageUrl %>" class="photoz"/>
     </a>
 
     <% if(innerPhoto.photoName) { %>
-    	<% if (oddPhoto) { %>
-	    	<p><%= innerPhoto.photoName %></p>
-	    <% } else { %> 
-	    	<p align="left"><%= innerPhoto.photoName %></p>
-	    <% } %>
+	    <p><%= innerPhoto.photoName %></p>
     <% } else { %>
     	<input type="text" class="photo-name-input" placeholder="Enter a caption here">
     <% } %>
 
     <% if(innerPhoto.location) { %>
         </br>
-        <% if (oddPhoto) { %>
-	    	<p><%= innerPhoto.location.vicinity %></p>
-	    <% } else { %> 
-	    	<p align="left"><%= innerPhoto.location.vicinity %></p>
-	    <% } %>
+        <p><%= innerPhoto.location.vicinity %></p>
     <% } else { %>
     	<input type="text" class="photo-location-input" contenteditable="true" placeholder="Enter a location here">
     <% } %>
-
-    </br>
 
 </div>
