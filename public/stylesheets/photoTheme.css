@@ -1,0 +1,32 @@
+.oddlala {
+	-ms-transform: rotate(-20deg); /* IE 9 */
+    -webkit-transform: rotate(-20deg); /* Chrome, Safari, Opera */
+    transform: rotate(-20deg);
+}
+
+.evenlala {
+	-ms-transform: rotate(20deg); /* IE 9 */
+    -webkit-transform: rotate(20deg); /* Chrome, Safari, Opera */
+    transform: rotate(20deg);
+}
+
+.img-thumbnail {
+	padding-bottom: 30px;
+    max-width: 300px;
+    max-height: 200px;
+    overflow: hidden;
+}
+
+p {
+	font-family: 'Indie Flower', cursive;
+	margin-left: 0px;
+	margin-right: 0px;
+}
+
+.oddDiv {
+	margin-left: 300px;
+}
+
+.evenDiv {
+	margin-left: 40px;
+}
