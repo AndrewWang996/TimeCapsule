@@ -82,7 +82,7 @@ console.log(req.user.google);
 */
 
     //CALL THIS WHEN YOU NEED TO SYNC
-    if(true)  {
+    if(false)  {
         scrapbookModel.syncFacebookWithId(req.user._id).then(function() {
             console.log("synced with " + req.user._id);
             console.log("DONE!");
