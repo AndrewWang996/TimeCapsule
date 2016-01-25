@@ -1,4 +1,5 @@
 
+console.log('maps.js loaded');
 
 
 // note that we are currently using google maps v3 WITHOUT an API key.
@@ -7,24 +8,81 @@
 $.getScript("js/lib/googlemaps.js", function() {
     console.log('maps loaded');
     var mapOptions = {
-        center: new google.maps.LatLng(12.2484861, 109.183363),
+        center: new google.maps.LatLng(42.359100, -71.0934),
         zoom: 8
     };
     var map = new google.maps.Map(document.getElementById("map"), mapOptions);
 
+    drawOnMap(scrapbookData, map);
+});
 
-    console.log(document.getElementById('map'));
-    console.log(new google.maps.LatLng(12.2484861, 109.183363));
 
-    console.log(map);
+function drawOnMap(scrapbookData, map) {
 
     var directionsService = new google.maps.DirectionsService();
     var directionsDisplay = new google.maps.DirectionsRenderer();
-});
+
+    var stack = [];
+    var markers = [];
+
+    stack.push('main');
+
+    while( stack.length > 0 ) {
+        var nextName = stack.pop();
+        var scrapbook = scrapbookData[nextName];
+
+        Object.keys(scrapbook).forEach(function(subScrapbookName) {
+
+            var subScrapbook = scrapbook[subScrapbookName];
+
+            if(subScrapbook.isPhoto) {
+                var photo = subScrapbook;
+                var location = photo.location;
+
+                if(location !== undefined) {
+                    console.log('placing a marker at : ');
+                    console.log(location);
+                    var marker = new google.maps.Marker({
+                        position: {
+                            lat: location.latitude,
+                            lng: location.longitude
+                        },
+                        map: map,
+                        title: photo.name
+                    });
+                    markers.push(marker);
+                }
+            }
+            else {
+                stack.push(subScrapbook.name);
+            }
+        });
+
+    }
+    var bounds = getBoundsFromMarkers(markers);
+    console.log(bounds);
+    map.fitBounds(bounds);
+}
+
+/**
+ * Returns a LatLngBounds object that encompasses all markers within the input array
+ * @param markers array of Marker objects
+ * @returns {google.maps.LatLngBounds}
+ */
+getBoundsFromMarkers = function(markers) {
+    var bounds = new google.maps.LatLngBounds();
+    markers.forEach(function(m) {
+        bounds.extend(m.getPosition());
+    });
+    return bounds;
+}
+
+
+
 
 $(document).ready(function() {
 
-
+    /*
     var events = [
         {dates: [new Date(2011, 2, 31)], title: "2011 Season Opener", section: 0},
         {dates: [new Date(2012, 1, 29)], title: "Spring Training Begins", section: 2},
@@ -61,6 +119,75 @@ $(document).ready(function() {
             'font-weight': 'bold'
         }
     });
+    */
 
-
+    var eventsAndSections = getEventsAndSections(scrapbookData);
+    makeTimeline(eventsAndSections.events,
+                 eventsAndSections.sections,
+                 'timeline');
 });
+
+function getEventsAndSections(scrapbookData) {
+    /*
+     If we take the nested object globalStorage as input,
+        we get as output: {events: ... , sections: ...}
+     where:
+        - events: the photos in globalStorage
+        - sections: [min, max] where min, max refer to the min, max dates of the photos
+     within the scrapbook
+     */
+
+    var stack = [];
+
+    var events = [];
+    var sections = [];
+
+    stack.push('main');
+
+    while( stack.length > 0 ) {
+        var nextName = stack.pop();
+        var scrapbook = scrapbookData[nextName];
+
+        Object.keys(scrapbook).forEach(function(subScrapbookName) {
+
+            var subScrapbook = scrapbook[subScrapbookName];
+
+            if(subScrapbook.isPhoto) {
+                var photo = subScrapbook;
+                console.log(photo.timestamp);
+                events.push({
+                    dates: [new Date(2012, 3, 13)],
+                    title: photo.name,
+                    section: 1                  // not sure what this does
+                });
+            }
+            else {
+                stack.push(subScrapbook.name);
+                events.push({
+                    dates: [new Date(2012, 3, 13), new Date(2012, 5, 24)],
+                    title: subScrapbook.name,
+                    section: 1
+                });
+            }
+        });
+
+    }
+
+    return {
+        events: events,
+        sections: sections
+    };
+}
+
+function makeTimeline(events, sections, timelineId) {
+    var timeline = new Chronoline($('#' + timelineId).get(0), events, {
+        animated: true,
+        tooltips: true,
+        defaultStartDate: new Date(2012, 2, 5),
+        sections: sections,
+        sectionLabelAttrs: {
+            'fill': '#997e3d',
+            'font-weight': 'bold'
+        }
+    });
+}

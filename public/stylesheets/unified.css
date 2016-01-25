@@ -2026,7 +2026,7 @@ input:focus {
 }
 #map {
   position: relative;
-  width: 100%;
+  width: 80%;
   height: 50%;
   display: block;
   margin-left: auto;

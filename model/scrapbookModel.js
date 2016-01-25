@@ -11,7 +11,6 @@ var locationSchema = mongoose.Schema({
     longitude: Number,
     place_id: String
 });
-
 exports.locationSchema = locationSchema;
 
 /*
@@ -37,10 +36,16 @@ var scrapbookSchema = mongoose.Schema({
         location: locationSchema
     }]
 });
-
 exports.scrapbookSchema = scrapbookSchema;
-
 var scrapbookModel = mongoose.model("Scrapbook", scrapbookSchema);
+
+var unifiedSchema = mongoose.Schema({
+    isPhoto: Boolean,
+    name: String,
+    timestamp: String,
+    location: locationSchema
+});
+exports.unifiedSchema = unifiedSchema;
 
 //Model methods
 

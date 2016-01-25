@@ -14,12 +14,25 @@ exports.getIndex = function(req, res) {
 
     var globalStorage = {};
 
-    getScrapbooks('main', globalStorage);
-
-    console.log(globalStorage);
-
+    getScrapbooks('main', globalStorage)
+        .then(function() {
+            // console.log(globalStorage);
+            var stringRep = JSON.stringify(globalStorage);
+            res.render('maps/index', {
+                title: 'Time Capsule Maps',
+                scrapbooks: globalStorage
+            });
+        });
 }
 
+
+hasEnoughInformation = function(object) {
+    return true;
+    return object['isPhoto'] !== undefined
+       && object['name'] !== undefined
+       && object['timestamp'] !== undefined
+       && object['location'] !== undefined;
+}
 
 getScrapbooks = function(name, globalStorage) {
 
@@ -31,20 +44,31 @@ getScrapbooks = function(name, globalStorage) {
 
             scrapbook.photos.forEach(function(subScrapbook) {
                 if( subScrapbook.isPhoto ) {
-                    globalStorage[name][subScrapbook.photoName] = {
+
+                    var photoObject = {
                         isPhoto: true,
                         name: subScrapbook.photoName,
                         timestamp: subScrapbook.timestamp,
                         location: subScrapbook.location
                     }
+
+                    if( hasEnoughInformation(photoObject) ) {
+                        globalStorage[name][subScrapbook.photoName] = photoObject;
+                    }
                 }
                 else {
-                    globalStorage[name][subScrapbook.albumName] = {
+
+                    var scrapbookObject = {
                         isPhoto: false,
                         name: subScrapbook.albumName,
                         timestamp: subScrapbook.timestamp,
                         location: subScrapbook.location
                     }
+
+                    if( hasEnoughInformation(scrapbookObject) ) {
+                        globalStorage[name][subScrapbook.albumName] = scrapbookObject;
+                    }
+
                     promises.push(
                         getScrapbooks(subScrapbook.albumName, globalStorage)
                     );
