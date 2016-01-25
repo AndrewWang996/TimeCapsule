@@ -63,17 +63,30 @@ exports.getBook = function(req, res) {
     res.redirect(req.url+"/main");
 };
 
+// TESTING
+var picasa = require('picasa');
+var Picasa = new picasa();
+
 exports.getBookWithName = function(req, res) {
-    console.log(decodeURIComponent(req.params.name));
+/*
+    console.log(_.find(req.user.tokens, {kind: "google"}));
+    var token = _.find(req.user.tokens, {kind: "google"});
+console.log(token.accessToken);
+console.log(req.user.google);
+    Picasa.getPhotos(token.accessToken, {}, function(err, photos) {
+        console.log(err);
+        console.log("DONE PHOTOS!");
+        console.log(photos);
+    });
+*/
 
     //CALL THIS WHEN YOU NEED TO SYNC
-    if(false)  {
+    if(true)  {
         scrapbookModel.syncFacebookWithId(req.user._id).then(function() {
             console.log("synced with " + req.user._id);
             console.log("DONE!");
         });
     }
-
 
     /*
     Scrapbook.syncFacebook(req.user.email).then(function() {
