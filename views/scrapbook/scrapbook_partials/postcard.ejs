@@ -1,0 +1,48 @@
+<div id="postcard" class="modal fade" role="dialog">
+<!--
+ <div class="modal-dialog">
+  <div class="modal-content">
+   <div class="modal-body">
+-->
+    <button type="button" class="close" data-dismiss="modal">X</button>
+    <img class="pphoto">
+    <% /* Nope %>
+    <img src="<%= innerPhoto.imageUrl %>" class="pphoto">
+    <% */ %>
+    <div class="pcontent">
+        <div align="center">
+            <p>From:</p>
+            <input type="text" class="photo-name-input" placeholder="Name" name="from">
+        </div>
+        <div align="center">
+            <p>To:</p>
+            <input type="text" class="photo-name-input" placeholder="Name" name="to">
+        </div>
+        <div align="center">
+            <p>Email:</p>
+            <input type="text" class="photo-name-input" placeholder="Recepient Email" name="email">
+        </div>
+
+        <!-- Message -->
+                <textarea name='message'> Enter a message here. </textarea>
+        <% /* This is too hard, so just always enter message %>
+        <div align="center">
+            <% if(innerPhoto.photoName) { %>
+                <textarea name='message'> <%= innerPhoto.photoName %> </textarea>
+            <% } else { %>
+                <textarea name='message'> Enter a message here. </textarea>
+            <% } %>
+        </div>
+        <% */ %>
+        <div align="right">
+            <button type="button" class="btn btn-primary send">Send!</button>
+        </div>
+
+    </div>
+
+<!--
+   </div>
+  </div>
+ </div>
+-->
+</div>

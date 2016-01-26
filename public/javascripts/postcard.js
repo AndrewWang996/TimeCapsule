@@ -1,4 +1,9 @@
 $(document).ready(function() {
+    $('.photoz').click(function(event) {
+        $('.pphoto').attr('src', event.target.src); 
+        $('#postcard').modal();
+    });
+
     $('button.send').click(function(event) {
         var html =
             '<div align="center">' + 
