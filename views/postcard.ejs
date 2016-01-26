@@ -8,7 +8,7 @@
 
 <% innerPhoto=album.photos[photoIndex]; %>
 
-<div class="postcard">
+<div id="postcard">
 	<img src="<%= innerPhoto.imageUrl %>" class="pphoto">
 	<div class="pcontent">
 		<div align="center">
@@ -23,7 +23,7 @@
 		<!-- Message -->
 		<div align="center">
 			<% if(innerPhoto.photoName) { %>
-			    <p><%= innerPhoto.photoName %></p>
+			    <textarea> <%= innerPhoto.photoName %> </textarea>
 		    <% } else { %>
 		    	<textarea> Enter a message here. </textarea>
 		    <% } %>

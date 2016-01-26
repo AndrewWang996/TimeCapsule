@@ -21,7 +21,8 @@ textarea {
 }
 
 .pphoto {
-	height: 400px;
+    max-width: 300px;
+    max-height: 400px;
     overflow: hidden;
     display: inline-block;
     vertical-align: middle;
@@ -40,7 +41,7 @@ textarea {
     vertical-align: middle;
 }
 
-.postcard{
+#postcard{
     padding: 4px;
     line-height: 1.42857143;
     background-color: #fff;
@@ -49,6 +50,5 @@ textarea {
     transition: all .2s ease-in-out;
     top: 25%;
     left: 30%;
-    margin-right: auto;
     position: absolute;
 }
