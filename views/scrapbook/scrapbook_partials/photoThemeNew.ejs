@@ -7,7 +7,7 @@
 <% } %>
 
 <!-- modal -->
-        <img id="<%=photoIndex%>" src="<%= innerPhoto.imageUrl %>" class="photoz"/>
+        <img src="<%= innerPhoto.imageUrl %>" class="photoz" onclick="photozClick(this)"/>
 
     <% if(innerPhoto.photoName) { %>
 	    <p><%= innerPhoto.photoName %></p>
