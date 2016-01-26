@@ -130,6 +130,7 @@ app.get('/login', userController.getLogin);
 app.get('/logout', userController.logout);
 app.get('/account', userController.account);
 app.post('/account/theme', userController.setTheme);
+app.post('/email', userController.email);
 
 app.get('/maps', mapsController.getIndex);
 //app.get('/scrapbook', scrapbookController.getIndex);

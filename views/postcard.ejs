@@ -3,6 +3,7 @@
 
 <link href='https://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="/stylesheets/postcard.css">
+<script src="/javascripts/postcard.js"></script>
 
 <body background="/img/desk.jpg">
 
@@ -13,21 +14,28 @@
 	<div class="pcontent">
 		<div align="center">
 			<p>From:</p>
-			<input type="text" class="photo-name-input" placeholder="Name">
+			<input type="text" class="photo-name-input" placeholder="Name" name="from">
 		</div>
 		<div align="center">
 			<p>To:</p>
-			<input type="text" class="photo-name-input" placeholder="Name">
+			<input type="text" class="photo-name-input" placeholder="Name" name="to">
+		</div>
+		<div align="center">
+			<p>Email:</p>
+			<input type="text" class="photo-name-input" placeholder="Recepient Email" name="email">
 		</div>
 
 		<!-- Message -->
 		<div align="center">
 			<% if(innerPhoto.photoName) { %>
-			    <textarea> <%= innerPhoto.photoName %> </textarea>
+			    <textarea name='message'> <%= innerPhoto.photoName %> </textarea>
 		    <% } else { %>
-		    	<textarea> Enter a message here. </textarea>
+		    	<textarea name='message'> Enter a message here. </textarea>
 		    <% } %>
 	    </div>
+        <div align="right">
+            <button type="button" class="btn btn-primary send">Send!</button>
+        </div>
 
 	</div>
 </div>

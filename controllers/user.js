@@ -1,3 +1,5 @@
+var sendgrid = require('sendgrid')('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');
+
 /**
  * GET /login
  * Login page.
@@ -38,4 +40,19 @@ exports.setTheme = function(req, res) {
     //console.log(req.session.theme);
     res.status(200);
     res.end('success');
+};
+
+exports.email = function(req, res) {
+    sendgrid.send({
+        to: req.body.email.split(','),
+        from: req.user.email,
+        fromname: req.body.from,
+        toname: req.body.to,
+        subject: req.user.email + ' has sent you a postcard! :)',
+        html: req.body.message
+    }, function(err, json) {
+        if(err) console.log(err);
+        res.status(200);
+        res.end('success');
+    });
 };
