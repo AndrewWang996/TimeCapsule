@@ -33,8 +33,47 @@ p {
 	margin-left: 0px;
 	margin-right: 0px;
 	max-width: 200px;
-	/*background-color: rgba(255,255,255,0.5);*/
-	/*opacity: 50%;*/
+}
+
+.albumLink {
+	margin-bottom: 10px;
+	border-radius: 5px;
+}
+
+.albumP {
+	font-size: 18px;
+	max-width: none;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.albumDes {
+	background-color: rgba(255,255,255,0.5);
+	border-radius: 10px;
+	max-width: 300px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.name-input {
+	margin-left: auto;
+	margin-right: auto;
+	background-color: rgba(255,255,255,0.5);
+}
+
+.scrapbook-location-input {
+	margin-left: auto;
+	margin-right: auto;
+	background-color: rgba(255,255,255,0.8);
+	border-radius: 10px;
+}
+
+.photo-name-input {
+	margin: 0px;
+}
+
+.photo-location-input {
+	margin: 0px;
 }
 
 .oddDiv {

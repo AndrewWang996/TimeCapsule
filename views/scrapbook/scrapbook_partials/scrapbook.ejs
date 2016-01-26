@@ -8,19 +8,19 @@
 
     </br>
 
-    <% if(innerScrapbook.albumName) { %>
-        <%= innerScrapbook.albumName %>
-    <% } else { %>
-        <input type="text" class="name-input" placeholder="Enter a name for your album here">
-    <% } %>
+    <div class ="albumDes">
+        <% if(innerScrapbook.albumName) { %>
+            <p class ="albumP"><%= innerScrapbook.albumName %></p>
+        <% } else { %>
+            <input type="text" class="name-input" placeholder="Enter a name for your album here">
+        <% } %>
 
-    </br>
-
-    <% if(innerScrapbook.location) { %>
-        <%= innerScrapbook.location.vicinity %>
-    <% } else { %>
-        <input type="text" class="scrapbook-location-input" contenteditable="true" placeholder="Enter a location here">
-    <% } %>
+        <% if(innerScrapbook.location) { %>
+            <p class ="albumP"><%= innerScrapbook.location.vicinity %></p>
+        <% } else { %>
+            <input type="text" class="scrapbook-location-input" contenteditable="true" placeholder="Enter a location here">
+        <% } %>
+    </div>
 
 
 </div>
