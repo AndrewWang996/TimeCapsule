@@ -1,9 +1,12 @@
 .btn-join
 {
-    background: none;
+    /*background: none;
     padding: 50px 50px 50px 50px;
     margin: 5px 5px 5px 5px;
-    z-index: -7;
+    z-index: -7;*/
+
+    width:250px;
+    height:150px;
 }
 
 .grid{
@@ -22,6 +25,9 @@
     position:relative;
     top: 0px;
     left: 0px;
+    /*max-height: 135px;*/
+    width:280px;
+    height:135px;
 }
 
 .item .big{

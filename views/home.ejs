@@ -82,11 +82,20 @@
             </div>
         <!-- </div> -->
 
-        <div class="darkclass">
-        <a href="/login" role="button" class="btn btn-default btn-join">
-            <span class="glyphicon glyphicon-plus"></span> Login
-        </a>
-        </div>
+        <!-- <div class="darkclass"> -->
+          <button type="button" class="btn btn-default darkclass" data-toggle="modal" data-target="#sign-in-modal">
+              <span class="glyphicon glyphicon-plus"></span> Login
+          </button>
+
+          <div id="sign-in-modal" class="modal fade">
+            HIIII
+              <a href="/auth/facebook" class="btn btn-block btn-facebook btn-social">
+                  <i class="fa fa-facebook"></i>
+                  Sign in with Facebook
+              </a>
+          </div>
+
+        <!-- </div> -->
     </div>
 </body>
 </html>

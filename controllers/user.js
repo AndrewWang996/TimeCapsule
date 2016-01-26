@@ -27,7 +27,7 @@ exports.account = function(req, res) {
     // LIST OF THEMES
     req.session.theme = req.session.theme || 'Leather'; //default
     console.log(req.session.theme);
-    var themes = ['Leather', 'Ice', 'Paris'];
+    var themes = ['Leather', 'Ice', 'Paris', 'Music'];
     res.render('account/account', {
         title: "Settings",
         themes: themes,

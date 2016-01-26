@@ -1,0 +1,13 @@
+#flipbook .page{
+    background: url('../../images/MusicPage.jpg') no-repeat center center !important;
+    background-size: 100% 100% !important;
+}
+
+#flipbook .hard{
+    background: url('../../images/MusicCover.jpg') no-repeat center center !important;
+    background-size: 100% 100% !important;
+}
+
+#flipbook .hard h1 {
+    color: white;
+}
