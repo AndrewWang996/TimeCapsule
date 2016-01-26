@@ -94,7 +94,7 @@ $(document).ready(function() {
 
         var photoId = $.trim(jQueryNode.attr('photo-id'));
 
-        var anchorElement = $(event.currentTarget.parentElement).prevAll('a')[0];
+        var anchorElement = jQueryNode.children('a')[0];
         var imgElement = $(anchorElement.children[0]);
         var photoUrl = $.trim(imgElement.attr('src'));
 

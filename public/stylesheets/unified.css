@@ -1983,7 +1983,6 @@ input:focus {
 }
 #flipbook input {
   display: block;
-  margin: 0;
   padding: 0;
   border: none;
   border-bottom: solid 2px #c9c9c9;
@@ -2009,6 +2008,10 @@ input:focus {
   -moz-user-select: none;
   -webkit-user-select: none;
   user-select: none;
+}
+#flipbook .scrapbook-album img:hover {
+  filter: blur(2px);
+  -webkit-filter: blur(2px);
 }
 #flipbook .scrapbook-photo {
   padding-top: 25px;
