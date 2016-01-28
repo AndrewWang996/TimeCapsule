@@ -1,4 +1,16 @@
+var photozClick = function(target) {
+        $('.pphoto').attr('src', target.src);
+        $('#postcard').modal();
+    };
+
 $(document).ready(function() {
+    /*
+    $('.photoz').click(function(event) {
+        $('.pphoto').attr('src', event.target.src); 
+        $('#postcard').modal();
+    });
+    */
+
     $('button.send').click(function(event) {
         var html =
             '<div align="center">' + 
@@ -14,6 +26,7 @@ $(document).ready(function() {
             email: $('input[name="email"]').val(),
             message: html //$('#postcard').html()
         }).done(function() {
+            $('#postcard').modal('hide');
             console.log('sent');
         });
     });

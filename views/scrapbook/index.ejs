@@ -6,13 +6,15 @@
 <script src="/js/lib/jquery.geocomplete.min.js"></script>
 <script src="/javascripts/scrapbook.js"></script>
 <script src="/javascripts/form.js"></script>
+<script src="/javascripts/postcard.js"></script>
 <link href='https://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="/stylesheets/photoThemeNew.css">
+<link rel="stylesheet" href="/stylesheets/postcard.css">
 <link rel="stylesheet" href="/stylesheets/theme/<%=theme%>.css">
 
 <body background="/img/desk.jpg">
 </br>
-
+<% include scrapbook_partials/postcard %>
 
 <div id="flipbook">
     <div class="hard"><h1><%= album.name %></h1></div> 
